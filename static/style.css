@@ -11,7 +11,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('stock-market.jpg'); /* Replace with your background image */
+    background-image: url('business-graph-chart-of-stock-market-investment-on-blue-background-vector.jpg'); /* Replace with your background image */
     background-size: cover;
     z-index: -1;
 }
@@ -31,7 +31,7 @@ label {
 
 input[type="text"],
 input[type="password"] {
-    width: 60%;
+    width: 80%;
     padding: 15px;
     margin-bottom: 15px; /* Slightly more spacing between input fields */
     border: 1px solid #ccc;
@@ -60,3 +60,4 @@ input[type="submit"] {
 .comparisonTable {
     text-align: center;
 }
+

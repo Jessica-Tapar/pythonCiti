@@ -2,11 +2,127 @@
 <html>
 <head>
     <title>Python Values in HTML Table</title>
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">-->
+
 </head>
+<style>
+
+    h1{
+        padding: 60px;
+        text-align: center;
+        background: #071952;
+        color: white;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+    .navbar{
+  position: relative;
+    left: 1200px;
+  height: 60px;
+}
+    /* Style for the navigation bar */
+    ul.navbar {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #071952;
+      overflow: hidden;
+      height: 60px;
+    }
+
+    ul.navbar li {
+      float: right;
+      height: 60px;
+    }
+
+    ul.navbar li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      height: 60px;
+    }
+
+    /* Style for the navigation bar links on hover */
+    ul.navbar li a:hover {
+      background-color: #111;
+      height: 60px;
+    }
+
+    .intro{
+      width: 890px;
+      position: relative;
+      top: -4PX;
+      left: 360px;
+      font-size: 25px;
+    }
+
+    .navigation-bar {
+      background-image: url('download.jpeg');
+      background-repeat: no-repeat;
+      background-size: contain; /* Adjust the image size to fit the navigation bar */
+      background-position: left center; /* Align the logo to the left side of the navigation bar */
+  }
+
+  .navigation-bar {
+    background-color: #071952;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+#comparisonTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+  }
+
+  #comparisonTable td, #comparisonTable th {
+    border: 2px solid #ddd;
+    padding: 8px;
+  }
+
+  #comparisonTable tr:hover {background-color: #ddd;}
+
+  #comparisonTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #071952;
+    color: white;
+    border: 2px solid black;
+  }
+
+
+
+
+
+</style>
 <body>
-    <h1>Python Values in HTML Table</h1>
+    <h1>NSE BSE RECOMMENDATION SYSTEM</h1>
 
     <div>
+
+        <div>
+    <nav class="navigation-bar">
+      <ul class="navbar">
+        <li><a href="Login.html">Exit</a></li>
+        <li><a href="FAQ.html">FAQ</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="main.html">Home</a></li>
+      </ul>
+  </nav>
+
+  </div>
+  <div class ="intro">
+    <p>Our recommendation system is designed to provide valuable insights and guidance for making informed investment decisions in the National Stock Exchange (NSE) and Bombay Stock Exchange (BSE). We understand that navigating the stock market can be overwhelming, which is why our platform aims to simplify the process and assist you in making well-informed choices.</p>
+  </div>
+
         <label for="filterCompany">Filter by Company:</label>
     <input type="text" id="filterCompany" onkeyup="filterTable()">
 
@@ -41,8 +157,8 @@
          </tbody>
     </table>
     </div>
-
-    <button ><a href="http://127.0.0.1:5000/saved_stocks">Saved Stocks</a></button>
+    <br/>
+    <button id="button"><a href="http://127.0.0.1:5000/saved_stocks">Saved Stocks</a></button>
 <!--    <h2>Saved Rows</h2>-->
 <!--    <div>-->
 <!--     <table border="1" id="savedTable">-->
