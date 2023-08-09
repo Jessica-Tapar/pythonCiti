@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display SQL Table in HTML</title>
+</head>
+<body>
+    <h1>Table Data</h1>
+<div>
+    <label for="filterCompany">Filter by Company:</label>
+    <input type="text" id="filterCompany" onkeyup="filterTable()">
+
+    <label for="filterBuy">Filter by Suggested Buy:</label>
+    <input type="text" id="filterBuy" onkeyup="filterTable()">
+
+         <label for="filterSell">Filter by Suggested Sell:</label>
+    <input type="text" id="filterSell" onkeyup="filterTable()">
+
+    <table border="1" id="saved">
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>NSE</th>
+                <th>BSE</th>
+                <th>Suggest Buy</th>
+                <th>Suggest Sell</th>
+                <th>Arbitrage</th>
+                <th>Date</th>
+                <!-- ... Add more headers for each column -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+
+                <!-- ... Add more cells for each column -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function filterTable() {
+            const inputCompany = document.getElementById("filterCompany");
+            const inputBuy = document.getElementById("filterBuy");
+            const inputSell = document.getElementById("filterSell");
+            const filterValueCompany = inputCompany.value.toUpperCase();
+            const filterValueBuy = inputBuy.value.toUpperCase();
+             const filterValueSell = inputSell.value.toUpperCase();
+
+
+            const table = document.getElementById("saved");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                if (cells) {
+                    const companyText = cells[0].textContent || cells[0].innerText;
+                    const buyText = cells[3].textContent || cells[3].innerText;
+                    const sellText = cells[4].textContent || cells[4].innerText;
+                    const matchCompany = companyText.toUpperCase().indexOf(filterValueCompany) > -1;
+                    const matchBuy = buyText.toUpperCase().indexOf(filterValueBuy) > -1;
+                     const matchSell = sellText.toUpperCase().indexOf(filterValueSell) > -1;
+                    rows[i].style.display = matchCompany && matchBuy && matchSell? "" : "none";
+                }
+            }
+        }
+
+</script>
+</body>
+</html>

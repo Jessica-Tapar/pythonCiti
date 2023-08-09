@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Values in HTML Table</title>
+</head>
+<body>
+    <h1>Python Values in HTML Table</h1>
+    <div>
+        <label for="filterCompany">Filter by Company:</label>
+    <input type="text" id="filterCompany" onkeyup="filterTable()">
+
+    <label for="filterNSE">Filter by Suggested Buy:</label>
+    <input type="text" id="filterBuy" onkeyup="filterTable()">
+
+         <label for="filterNSE">Filter by Suggested Sell:</label>
+    <input type="text" id="filterSell" onkeyup="filterTable()">
+     <table border="1" id="comparisonTable">
+          <thead>
+      <tr>
+        <th>Company</th>
+        <th>NSE</th>
+        <th>BSE</th>
+        <th>Suggest Buy</th>
+        <th>Suggest Sell</th>
+          <th>profit</th>
+          <th>Date</th>
+          <th>Save in History</th>
+
+      </tr>
+    </thead>
+         <tbody>
+        {% for row in data %}
+        <tr>
+            {% for value in row %}
+            <td>{{ value }}</td>
+            {% endfor %}
+            <td><button onclick="saveRow(this)">Save</button></td>
+        </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+    </div>
+
+    <h2>Saved Rows</h2>
+    <div>
+     <table border="1" id="savedTable">
+          <thead>
+            <tr>
+              <th>Company</th>
+                <th>NSE</th>
+                <th>BSE</th>
+                <th>Suggest Buy</th>
+                <th>Suggest Sell</th>
+                <th>Arbitrage</th>
+                <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- This is where saved rows will be appended -->
+          </tbody>
+    </table>
+    </div>
+
+<script>
+        function saveRow(button) {
+            const row = button.closest('tr');
+            const cells = row.getElementsByTagName('td');
+            const companyName = cells[0].textContent;
+            const nseValue = cells[1].textContent;
+            const bseValue = cells[2].textContent;
+            const suggestBuy = cells[3].textContent;
+            const suggestSell = cells[4].textContent;
+            const arbitrage = cells[5].textContent;
+            const date= cells[6].textContent;
+
+            // Perform your save action here, for example:
+            // Send data to server using AJAX
+
+            // Display a confirmation message (you can customize this)
+            alert(`Saved row for ${companyName}`);
+
+            const savedTable = document.getElementById('savedTable');
+            const newRow = savedTable.insertRow();
+            newRow.insertCell().textContent = companyName;
+            newRow.insertCell().textContent = nseValue;
+            newRow.insertCell().textContent = bseValue;
+            newRow.insertCell().textContent = suggestBuy;
+            newRow.insertCell().textContent = suggestSell;
+            newRow.insertCell().textContent = arbitrage;
+            newRow.insertCell().textContent = date;
+
+
+        }
+
+        function filterTable() {
+            const inputCompany = document.getElementById("filterCompany");
+            const inputBuy = document.getElementById("filterBuy");
+            const inputSell = document.getElementById("filterSell");
+            const filterValueCompany = inputCompany.value.toUpperCase();
+            const filterValueBuy = inputBuy.value.toUpperCase();
+             const filterValueSell = inputSell.value.toUpperCase();
+
+
+            const table = document.getElementById("comparisonTable");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                if (cells) {
+                    const companyText = cells[0].textContent || cells[0].innerText;
+                    const buyText = cells[3].textContent || cells[3].innerText;
+                    const sellText = cells[4].textContent || cells[4].innerText;
+                    const matchCompany = companyText.toUpperCase().indexOf(filterValueCompany) > -1;
+                    const matchBuy = buyText.toUpperCase().indexOf(filterValueBuy) > -1;
+                     const matchSell = sellText.toUpperCase().indexOf(filterValueSell) > -1;
+                    rows[i].style.display = matchCompany && matchBuy && matchSell? "" : "none";
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
